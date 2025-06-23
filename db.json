@@ -5,14 +5,14 @@
       "title": "Getting Started with React",
       "author": "Sarah Johnson",
       "content": "Learn how to build UIs with React!",
-      "image": "https://placehold.co/600x300?text=React+Post"
+      "image": "https://images.pexels.com/photos/1340725/pexels-photo-1340725.jpeg"
     },
     {
       "id": 2,
       "title": "The Future of Web Development",
       "author": "Michael Chen",
       "content": "What does the future hold for developers and frameworks?",
-      "image": "https://placehold.co/600x300?text=Future+of+Web+Dev"
+      "image": "https://images.pexels.com/photos/3194523/pexels-photo-3194523.jpeg"
     }
   ]
 }

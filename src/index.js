@@ -33,7 +33,7 @@ function handlePostClick(id) {
       postDetail.title.textContent = post.title;
       postDetail.author.textContent = post.author;
       postDetail.content.textContent = post.content;
-      postDetail.image.src = post.image || "https://via.placeholder.com/600x300?text=No+Image";
+      postDetail.image.src = post.image || "https://images.pexels.com/photos/3194523/pexels-photo-3194523.jpeg";
     });
 }
 
