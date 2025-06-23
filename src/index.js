@@ -33,7 +33,9 @@ function handlePostClick(id) {
       postDetail.title.textContent = post.title;
       postDetail.author.textContent = post.author;
       postDetail.content.textContent = post.content;
-      postDetail.image.src = post.image || "https://images.pexels.com/photos/3194523/pexels-photo-3194523.jpeg";
+      postDetail.image.src = post.image && post.image.startsWith("http")
+        ? post.image
+        : "https://images.pexels.com/photos/2619490/pexels-photo-2619490.jpeg";
     });
 }
 
@@ -44,7 +46,7 @@ function addNewPostListener() {
       title: document.getElementById("new-title").value,
       author: document.getElementById("new-author").value,
       content: document.getElementById("new-content").value,
-      image: document.getElementById("new-image").value,
+      image: document.getElementById("new-image").value || "https://images.pexels.com/photos/2619490/pexels-photo-2619490.jpeg",
     };
 
     fetch(baseURL, {
