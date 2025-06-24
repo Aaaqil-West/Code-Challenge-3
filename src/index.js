@@ -1,13 +1,20 @@
 const baseURL = "http://127.0.0.1:3000/posts";
 const postsContainer = document.getElementById("posts");
+
 const postDetail = {
   title: document.getElementById("detail-title"),
   author: document.getElementById("detail-author"),
   content: document.getElementById("detail-content"),
   image: document.getElementById("detail-image"),
+  category: document.getElementById("detail-category"),
+  tags: document.getElementById("detail-tags"),
+  summary: document.getElementById("detail-summary"),
+  readingTime: document.getElementById("detail-reading-time"),
 };
+
 const newPostForm = document.getElementById("new-post-form");
 const editForm = document.getElementById("edit-post-form");
+
 let currentPostId = null;
 
 function displayPosts() {
@@ -18,6 +25,7 @@ function displayPosts() {
       posts.forEach((post) => {
         const div = document.createElement("div");
         div.textContent = post.title;
+        div.classList.add("post-title");
         div.addEventListener("click", () => handlePostClick(post.id));
         postsContainer.appendChild(div);
       });
@@ -33,20 +41,27 @@ function handlePostClick(id) {
       postDetail.title.textContent = post.title;
       postDetail.author.textContent = post.author;
       postDetail.content.textContent = post.content;
-      postDetail.image.src = post.image && post.image.startsWith("http")
-        ? post.image
-        : "https://images.pexels.com/photos/2619490/pexels-photo-2619490.jpeg";
+      postDetail.image.src = post.image || "https://images.pexels.com/photos/2619490/pexels-photo-2619490.jpeg";
+      postDetail.category.textContent = post.category || "N/A";
+      postDetail.tags.textContent = (post.tags || []).join(", ");
+      postDetail.summary.textContent = post.summary || "No summary";
+      postDetail.readingTime.textContent = post.readingTime ? `${post.readingTime} min read` : "";
     });
 }
 
 function addNewPostListener() {
   newPostForm.addEventListener("submit", (e) => {
     e.preventDefault();
+
     const newPost = {
       title: document.getElementById("new-title").value,
       author: document.getElementById("new-author").value,
       content: document.getElementById("new-content").value,
       image: document.getElementById("new-image").value || "https://images.pexels.com/photos/2619490/pexels-photo-2619490.jpeg",
+      category: document.getElementById("new-category").value,
+      tags: document.getElementById("new-tags").value.split(",").map(tag => tag.trim()),
+      summary: document.getElementById("new-summary").value,
+      readingTime: parseInt(document.getElementById("new-reading-time").value, 10) || null,
     };
 
     fetch(baseURL, {
@@ -100,10 +115,14 @@ document.getElementById("delete-btn").addEventListener("click", () => {
   fetch(`${baseURL}/${currentPostId}`, {
     method: "DELETE",
   }).then(() => {
-    postDetail.title.textContent = "";
-    postDetail.author.textContent = "";
-    postDetail.content.textContent = "";
-    postDetail.image.src = "";
+    currentPostId = null;
+    for (let key in postDetail) {
+      if (key === "image") {
+        postDetail.image.src = "";
+      } else {
+        postDetail[key].textContent = "";
+      }
+    }
     displayPosts();
   });
 });

@@ -11,37 +11,62 @@
   <p>Modern blog post management</p>
 
   <div id="container">
+    <!-- Left: Post list -->
     <div id="post-list">
       <h3>Blog Posts</h3>
       <div id="posts"></div>
     </div>
 
+    <!-- Right: Post detail -->
     <div id="post-detail">
       <h3 id="detail-title"></h3>
       <p><strong>By:</strong> <span id="detail-author"></span></p>
-      <img id="detail-image" src="https://images.pexels.com/photos/3296547/pexels-photo-3296547.jpeg" alt="Post Image" />
+      <img
+        id="detail-image"
+        src="https://images.pexels.com/photos/3296547/pexels-photo-3296547.jpeg"
+        alt="Post Image"
+      />
       <p id="detail-content"></p>
+
+      <!-- ✅ New fields for post details -->
+      <p><strong>Category:</strong> <span id="detail-category"></span></p>
+      <p><strong>Tags:</strong> <span id="detail-tags"></span></p>
+      <p><strong>Summary:</strong> <span id="detail-summary"></span></p>
+      <p><strong>Reading Time:</strong> <span id="detail-reading-time"></span></p>
+
       <button id="edit-btn">Edit</button>
       <button id="delete-btn">Delete</button>
 
+      <!-- Edit form -->
       <form id="edit-post-form" class="hidden">
         <h4>Update Post Details</h4>
         <label for="edit-title">Title:</label>
         <input type="text" id="edit-title" />
+
         <label for="edit-content">Content:</label>
         <textarea id="edit-content" rows="4"></textarea>
+
         <button type="submit">Update Post</button>
         <button type="button" id="cancel-edit">Cancel</button>
       </form>
     </div>
   </div>
 
+  <!-- New post form -->
   <form id="new-post-form">
     <h3>Add New Post</h3>
+
     <input type="text" id="new-title" placeholder="Post title..." required />
     <input type="text" id="new-author" placeholder="Author name..." required />
     <input type="text" id="new-image" placeholder="Image URL..." required />
     <textarea id="new-content" placeholder="Write your post content..." required></textarea>
+
+    <!--  New fields for extra options -->
+    <input type="text" id="new-category" placeholder="Category..." required />
+    <input type="text" id="new-tags" placeholder="Tags (comma-separated)..." />
+    <input type="text" id="new-summary" placeholder="Short summary..." />
+    <input type="number" id="new-reading-time" placeholder="Reading time (in minutes)" />
+
     <button type="submit">Add Post</button>
   </form>
 
